@@ -1,0 +1,51 @@
+---
+title: "Import Data (Bonus)"
+output: html_notebook
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+## Your Turn 1
+
+Find nimbus.csv on your server or computer. Then read it into an object. Then view the results.
+
+```{r}
+
+```
+
+## The hole in the ozone layer
+
+```{r}
+nimbus <- read_csv("nimbus.csv", na = ".", 
+  col_types = list(ozone = col_double()))
+
+library(viridis)
+world <- map_data(map = "world")
+nimbus %>% 
+  ggplot() +
+    geom_point(aes(longitude, latitude, color = ozone)) +
+    geom_path(aes(long, lat, group = group), data = world) +
+    coord_map("ortho", orientation=c(-90, 0, 0)) +
+    scale_color_viridis(option = "A")
+```
+
+***
+
+# Take Aways
+
+The readr package provides efficient functions for reading and saving common flat file data formats.
+
+Consider these packages for other types of data:
+
+Package  | Reads
+-------- | -----
+haven    | SPSS, Stata, and SAS files
+readxl   | excel files (.xls, .xlsx)
+jsonlite | json
+xml2     | xml
+httr     | web API's
+rvest    | web pages (web scraping)
+DBI      | databases
+sparklyr | data loaded into spark

@@ -1,0 +1,109 @@
+---
+title: "Models"
+output: html_notebook
+---
+
+```{r setup, message=FALSE}
+library(tidyverse)
+library(modelr)
+library(broom)
+
+wages <- heights %>% filter(income > 0)
+```
+
+## Your Turn 1
+
+Fit the model on the slide and then examine the output. What does it look like?
+
+```{r}
+
+```
+
+## Your Turn 2
+
+Use a pipe to model `log(income)` against `height`. Then use broom and dplyr functions to extract:
+
+1. The **coefficient estimates** and their related statistics 
+2. The **adj.r.squared** and **p.value** for the overall model
+
+```{r}
+
+```
+
+## Your Turn 3
+
+Model `log(income)` against `education` _and_ `height`. Do the coefficients change?
+
+```{r}
+
+```
+
+## Your Turn 4
+
+Model `log(income)` against `education` and `height` and `sex`. Can you interpret the coefficients?
+
+```{r}
+
+```
+
+## Your Turn 5
+
+Test your understanding. Try to use `data_grid()` to generate the data frame on the slide.
+
+```{r}
+
+```
+
+## Your Turn 6
+
+Use `add_predictions()` to add predictions to your results from above.
+
+```{r}
+
+```
+
+## Your Turn 7
+
+Adjust your code to standardise on the median of education. Then plot a line graph of height vs. predictions, colored by sex. _Bonus: overlay the results on the original data points._
+
+```{r}
+
+```
+
+## Your Turn 8
+
+Plot the predictions of model_ehs against education and sex for a reasonable value of height:
+
+1. Make a range of x values to visualize over
+2. Add predictions
+3. Plot
+
+```{r}
+
+```
+
+## Your Turn 9
+
+Use `data_grid()` and one of `gather_predictions()` or `spread_predictions()` to make the plot below. (Hint: only one works easily) 
+
+```{r}
+_____ %>% 
+  data_grid(______, .model = mod_ehs) %>% 
+  _______predictions(_______________) %>%
+  ____________________ + 
+    _______________________________________ +
+    _______________________________________ +
+    coord_trans(y = "exp")
+```
+
+***
+
+# Take Aways
+
+* Use `glance()`, `tidy()`, and `augment()` from the **broom** package to return model values in a data frame.
+
+* Use `data_grid()` and `add_predictions()` or `gather_predictions()` or `spread_predictions()` from the **modelr** package to visualize predictions.
+
+* Use `add_residuals()` or `gather_residuals()` or `spread_residuals()` from the **modelr** package to visualize residuals.
+
+

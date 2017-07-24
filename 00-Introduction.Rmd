@@ -1,0 +1,36 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an R Notebook. You can use it to take notes and run code. For example, you can write your name on the line below. Try it: 
+
+
+
+```{r}
+# You can write code in chunks that look like this.
+# To run the code click the Green play button to the right. Try it!
+plot(cars)
+```
+
+Good job! The results of a code chunk will appear beneath the chunk. You can click the x above the results to make them go away, but let's not do that.
+
+To make a new chunk, press *Cmd+Option+I* (*Ctrl+Alt+I* on Windows), or click the *Insert* button at the top of this document, then select *R*. 
+Try making a code chunk below:
+
+
+
+Good job! You should place all of your R code inside of code chunks.
+
+```{r}
+# You can click the downward facing arrow to the left of the play button to run
+# every chunk above the current code chunk. This is useful if the code in your
+# chunk depends on the code in previous chunks. For example, if you use an
+# object or dataset made in a previous chunk.
+```
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it. This makes a nice, polished report of your work to share.
+
+Click the *Preview* button at the top of this document or press *Cmd+Shift+K* (*Ctrl+Shift+K* on Windows) to preview the HTML file. Try clicking *Preview* now.
+
+You can open a new R Notebook by going to **File > New File > R Notebook**.

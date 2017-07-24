@@ -1,0 +1,246 @@
+---
+title: "Transform Data"
+output: html_notebook
+---
+
+```{r setup}
+library(tidyverse)
+library(babynames)
+library(nycflights13)
+
+# Toy datasets to use
+
+pollution <- tribble(
+       ~city,   ~size, ~amount, 
+  "New York", "large",      23,
+  "New York", "small",      14,
+    "London", "large",      22,
+    "London", "small",      16,
+   "Beijing", "large",      121,
+   "Beijing", "small",      56
+)
+
+band <- tribble(
+   ~name,     ~band,
+  "Mick",  "Stones",
+  "John", "Beatles",
+  "Paul", "Beatles"
+)
+
+instrument <- tribble(
+    ~name,   ~plays,
+   "John", "guitar",
+   "Paul",   "bass",
+  "Keith", "guitar"
+)
+
+instrument2 <- tribble(
+    ~artist,   ~plays,
+   "John", "guitar",
+   "Paul",   "bass",
+  "Keith", "guitar"
+)
+```
+
+## babynames
+
+```{r}
+babynames
+```
+
+
+## Your Turn 1
+
+Alter the code to select just the `n` column:
+
+```{r}
+select(babynames, name, prop)
+```
+
+## Quiz
+
+Which of these is NOT a way to select the `name` and `n` columns together?
+
+```{r}
+select(babynames, -c(year, sex, prop))
+select(babynames, name:n)
+select(babynames, starts_with("n"))
+select(babynames, ends_with("n"))
+```
+
+## Your Turn 2
+
+Show:
+
+* All of the names where prop is greater than or equal to 0.08  
+* All of the children named "Sea"  
+* All of the names that have a missing value for `n`  
+
+```{r}
+filter(babynames, is.na(n))
+
+```
+
+## Your Turn 3
+
+Use Boolean operators to alter the code below to return only the rows that contain:
+
+* Girls named Sea  
+* Names that were used by exactly 5 or 6 children in 1880  
+* Names that are one of Acura, Lexus, or Yugo
+
+```{r}
+filter(babynames, name == "Sea" | name == "Anemone")
+```
+
+## Your Turn 4
+
+Arrange babynames by `n`. Add `prop` as a second (tie breaking) variable to arrange on. Can you tell what the smallest value of `n` is?
+
+```{r}
+
+```
+
+## Your Turn 5
+
+Use `desc()` to find the names with the highest prop.
+Then, use `desc()` to find the names with the highest n.
+
+```{r}
+
+```
+
+## Your Turn 6
+
+Use `%>%` to write a sequence of functions that: 
+
+1. Filter babynames to just the girls that were born in 2015  
+2. Select the `name` and `n` columns  
+3. Arrange the results so that the most popular names are near the top.
+
+```{r}
+
+```
+
+## Exam
+
+1. Trim `babynames` to just the rows that contain your `name` and your `sex`  
+2. Trim the result to just the columns that will appear in your graph (not strictly necessary, but useful practice)  
+3. Plot the results as a line graph with `year` on the x axis and `prop` on the y axis
+
+```{r}
+
+```
+
+## Your Turn 7
+
+Use summarise() to compute three statistics about the data:
+
+1. The first (minimum) year in the dataset  
+2. The last (maximum) year in the dataset  
+3. The total number of children represented in the data
+
+```{r}
+
+```
+
+## Your Turn 8
+
+Extract the rows where `name == "Khaleesi"`. Then use `summarise()` and a summary functions to find:
+
+1. The total number of children named Khaleesi
+2. The first year Khaleesi appeared in the data
+
+```{r}
+
+```
+
+## Your Turn 9
+
+Use `group_by()`, `summarise()`, and `arrange()` to display the ten most popular names. Compute popularity as the total number of children of a single gender given a name.
+
+```{r}
+
+```
+
+## Your Turn 10
+
+Use grouping to calculate and then plot the number of children born each year over time.
+
+```{r}
+
+```
+
+## Your Turn 11
+
+Use `min_rank()` and `mutate()` to rank each row in `babynames` from largest `n` to lowest `n`.
+
+```{r}
+
+```
+
+## Your Turn 12
+
+Compute each name's rank _within its year and sex_. 
+Then compute the median rank _for each combination of name and sex_, and arrange the results from highest median rank to lowest.
+
+```{r}
+
+```
+
+## Your Turn 13
+
+Which airlines had the largest arrival delays? Complete the code below.
+
+1. Join `airlines` to `flights`
+2. Compute and order the average arrival delays by airline. Display full names, no codes.
+
+```{r}
+flights %>%
+  drop_na(arr_delay) %>%
+                      %>%
+  group_by(         ) %>%
+                      %>%
+  arrange(       ) 
+```
+
+## Your Turn 14
+
+Use flights and airports to compute the distance and average `arr_delay` by destination airport (names only, not codes).  Order by average delay, worst to best.
+
+Hint: use `first()` to get distance.
+
+```{r}
+
+```
+
+## Your Turn 15
+
+How many airports in `airports` are serviced by flights in our dataset? (i.e. flights originating in New York)
+
+How many flights in `flights` flew to an airport not listed in airports?
+
+```{r}
+
+```
+
+
+
+***
+
+# Take aways
+
+* Extract variables with `select()`  
+* Extract cases with `filter()`  
+* Arrange cases, with `arrange()`  
+
+* Make tables of summaries with `summarise()`  
+* Make new variables, with `mutate()`  
+* Do groupwise operations with `group_by()`
+
+* Connect operations with `%>%`  
+
+* Use `left_join()`, `right_join()`, `full_join()`, or `inner_join()` to join datasets
+* Use `semi_join()` or `anti_join()` to filter datasets against each other
+
+

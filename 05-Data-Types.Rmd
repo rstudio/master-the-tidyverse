@@ -1,0 +1,112 @@
+---
+title: "Data Types"
+output: html_notebook
+---
+
+```{r setup}
+library(tidyverse)
+library(babynames)
+library(nycflights13)
+library(stringr)
+library(forcats)
+library(hms)
+library(lubridate)
+```
+
+## Your Turn 1
+
+Create a logical variable in `flights` that displays whether a flight was delayed (`arr_delay > 0`). Remove all NAs in the variable. 
+
+Then create a summary table that shows:
+
+1. How many flights were delayed  
+2. What proportion of flights were delayed
+
+```{r}
+
+```
+
+
+## Your Turn 2
+
+In your group, fill in the blanks to:
+
+1. Isolate the last letter of every name and create a logical variable that displays whether the last letter is one of "a", "e", "i", "o", "u", or "y".  
+2. Use a weighted mean to calculate the proportion of children whose name ends in a vowel (by `year` and `sex`)   
+3. and then display the results as a line plot.
+
+```{r}
+babynames %>%
+  _______(last = _________, 
+          vowel = __________) %>%
+  group_by(__________) %>%
+  _________(p_vowel = weighted.mean(vowel, n)) %>%
+  _________ +
+  __________
+```
+
+## Your Turn 3
+
+Repeat the previous exercise, some of whose code is below, to make a sensible graph of average TV consumption by marital status.
+
+```{r}
+gss_cat %>%
+  drop_na(________) %>%
+  group_by(________) %>%
+  summarise(_________________) %>%
+  ggplot() +
+    geom_point(mapping = aes(x = _______, y = _________________________))
+```
+
+## Your Turn 4
+
+Do you think liberals or conservatives watch more TV?
+Compute average tv hours by party ID an then plot the results.
+
+```{r}
+
+```
+
+## Your Turn 5
+
+What is the best time of day to fly?
+
+Use the `hour` and `minute` variables in `flights` to compute the time of day for each flight as an hms. Then use a smooth line to plot the relationship between time of day and `arr_delay`.
+
+```{r}
+
+```
+
+## Your Turn 6
+
+Fill in the blanks to:
+
+Extract the day of the week of each flight (as a full name) from `time_hour`. 
+
+Calculate the average `dep_delay` by day of the week.
+
+Plot the results as a column chart (bar chart) with `geom_col()`.
+
+```{r}
+flights %>% 
+  mutate(weekday = _______________________________) %>% 
+  __________________ %>% 
+  drop_na(dep_delay) %>% 
+  summarise(avg_delay = _______________) %>% 
+  ggplot() +
+    ___________(mapping = aes(x = weekday, y = avg_delay))
+```
+
+***
+
+# Take Aways
+
+Dplyr gives you three _general_ functions for manipulating data: `mutate()`, `summarise()`, and `group_by()`. Augment these with functions from the packages below, which focus on specific types of data.
+
+Package   | Data Type
+--------- | --------
+stringr   | strings
+forcats   | factors
+hms       | times
+lubridate | dates and times
+
