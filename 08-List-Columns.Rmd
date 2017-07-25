@@ -1,0 +1,98 @@
+---
+title: "List-Columns"
+output: html_notebook
+---
+
+```{r setup, message=FALSE}
+library(tidyverse)
+library(broom)
+library(gapminder)
+library(stringr)
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+## Your Turn 1
+
+How has life expectancy changed since 1952?
+
+Using `gapminder`, make a line plot of **lifeExp** vs. **year** grouped by **country**. Set alpha to 0.2, to see the results better.
+
+```{r}
+
+```
+
+## Your Turn 2
+
+1. Group `gapminder` by `country` and `continent` then fit a model and collect the residuals for *each country.*
+
+2. Plot the residuals vs `year` as a line graph, grouped by `country`, with `alpha = 0.2`.
+
+3. Add the following to your plot to facet by `continent`:
+
+    + facet_wrap(~continent)
+
+```{r warning = FALSE}
+
+```
+
+## Your Turn 3
+
+Complete the code to filter, `residuals`, which is the dataset that you made in Your Turn 2, against `bad_fits`, which is the data set that contains just the countries that have an r-squared < 0.25.
+
+Use the result to plot a line graph of `year` vs. `.resid` colored by `country` for each country that had an r-squared < 0.25.
+
+```{r warning = FALSE}
+bad_fits <- gapminder %>% 
+  group_by(_______) %>% 
+  do(lm(lifeExp ~ year, data = ____) %>%  glance()) %>% 
+  filter(___________) 
+
+residuals <- gapminder %>% 
+  group_by(_______) %>% 
+  do(________________________________________) 
+
+residuals %>% 
+  ___________(bad_fits) %>% 
+  ggplot() +
+    _________________________________________
+```
+
+## Your Turn 4
+
+Create your own copy of master and then add one more list column: 
+
+* **output** which contains the output of `augment()` for each model
+
+```{r warning = FALSE}
+fit_model <- function(df) lm(lifeExp ~ year, data = df)
+get_rsq <- function(mod) glance(mod)$r.squared
+_______________________________________________ # write a function that applies augment ot a model
+
+master <- gapminder %>% 
+  ___________ %>% # group gapminder
+  ___________ %>% # nest gapminder
+  mutate(model =  ________________________, # add a model column
+         r.squared = _____________________, # add an r.squared column
+         output = ________________________) # add an output column
+```
+
+## Your Turn 5
+
+Use master to recreate our plot of the residuals vs `year` for the six countries with an r squared less than 0.25.
+
+```{r}
+  
+```
+
+***
+
+# Take Aways
+
+* A two way table is an organizational device that you can manipulate.   
+* The table structure will maintain correspondence between the table contents during your manipulations.  
+* Data frames can store more than values. They can store list columns, which can contain _any_ type of R object.  
+* You can manipulate list columns with `mutate()` and the `map()` family functions.  
+* Create list columns with `nest()`  
+* Unnest list columns with `unnest()` to create plots  
+* Dplyr's `do()` function can be a useful tool when combined with broom functions and `group_by()`
