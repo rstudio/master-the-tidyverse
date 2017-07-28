@@ -75,6 +75,7 @@ master <- gapminder %>%
   mutate(model =  ________________________, # add a model column
          r.squared = _____________________, # add an r.squared column
          output = ________________________) # add an output column
+master
 ```
 
 ## Your Turn 5
