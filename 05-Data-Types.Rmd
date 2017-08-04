@@ -15,9 +15,11 @@ library(hms)
 
 ## Your Turn 1
 
-Create a logical variable in `flights` that displays whether a flight was delayed (`arr_delay > 0`). Remove all NAs in the variable. 
+Use `flights` to create `delayed`, the variable that displays whether a flight was delayed (`arr_delay > 0`).
 
-Then create a summary table that shows:
+Then, remove all rows that contain an NA in `delayed`. 
+
+Finally, create a summary table that shows:
 
 1. How many flights were delayed  
 2. What proportion of flights were delayed
@@ -83,7 +85,7 @@ Fill in the blanks to:
 
 Extract the day of the week of each flight (as a full name) from `time_hour`. 
 
-Calculate the average `dep_delay` by day of the week.
+Calculate the average `arr_delay` by day of the week.
 
 Plot the results as a column chart (bar chart) with `geom_col()`.
 
@@ -91,7 +93,7 @@ Plot the results as a column chart (bar chart) with `geom_col()`.
 flights %>% 
   mutate(weekday = _______________________________) %>% 
   __________________ %>% 
-  drop_na(dep_delay) %>% 
+  drop_na(arr_delay) %>% 
   summarise(avg_delay = _______________) %>% 
   ggplot() +
     ___________(mapping = aes(x = weekday, y = avg_delay))

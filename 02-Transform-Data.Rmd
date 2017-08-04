@@ -206,22 +206,13 @@ flights %>%
 
 ## Your Turn 14
 
-Use flights and airports to compute the distance and average `arr_delay` by destination airport (names only, not codes).  Order by average delay, worst to best.
+How many airports in `airports` are serviced by flights originating in New York (i.e. flights in our dataset?) Notice that the column to join on is named `faa` in the **airports** data set and `dest` in the **flights** data set.
 
-Hint: use `first()` to get distance.
-
-```{r}
-
-```
-
-## Your Turn 15
-
-How many airports in `airports` are serviced by flights in our dataset? (i.e. flights originating in New York)
-
-How many flights in `flights` flew to an airport not listed in airports?
 
 ```{r}
-
+__________ %>%
+ _________(_________, by = ___________) %>%
+  distinct(faa)
 ```
 
 
