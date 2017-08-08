@@ -48,52 +48,48 @@ Model `log(income)` against `education` and `height` and `sex`. Can you interpre
 
 ## Your Turn 5
 
-Test your understanding. Try to use `data_grid()` to generate the data frame on the slide.
+Use a broom function and ggplot2 to make a line graph of `height` vs `.fitted` for our heights model, `mod_h`.
+
+_Bonus: Overlay the plot on the original data points._
 
 ```{r}
+mod_h <- wages %>% lm(log(income) ~ height, data = .)
 
+mod_h %>% 
+  ________(data = wages) %>% 
+  ________ +
+    ________
 ```
 
 ## Your Turn 6
 
-Use `add_predictions()` to add predictions to your results from above.
+Repeat the process to make a line graph of `height` vs `.fitted` colored by `sex` for model mod_ehs. Are the results interpretable? Add `+ facet_wrap(~education)` to the end of your code. What happens?
 
 ```{r}
+mod_ehs <- wages %>% lm(log(income) ~ education + height + sex, data = .)
 
+______ %>% 
+  augment(data = wages) %>% 
+  ggplot(mapping = aes(x = height, y = .fitted, __________)) +
+    geom_line()
 ```
 
 ## Your Turn 7
 
-Adjust your code to standardise on the median of education. Then plot a line graph of height vs. predictions, colored by sex. _Bonus: overlay the results on the original data points._
+Use one of `spread_predictions()` or `gather_predictions()` to make a line graph of `height` vs `pred` colored by `model` for each of mod_h, mod_eh, and mod_ehs. Are the results interpretable? 
 
-```{r}
+Add `+ facet_grid(sex ~ education)` to the end of your code. What happens?
 
-```
+```{r warning = FALSE, message = FALSE}
+mod_h <- wages %>% lm(log(income) ~ height, data = .)
+mod_eh <- wages %>% lm(log(income) ~ education + height, data = .)
+mod_ehs <- wages %>% lm(log(income) ~ education + height + sex, data = .)
 
-## Your Turn 8
-
-Plot the predictions of model_ehs against education and sex for a reasonable value of height:
-
-1. Make a range of x values to visualize over
-2. Add predictions
-3. Plot
-
-```{r}
-
-```
-
-## Your Turn 9
-
-Use `data_grid()` and one of `gather_predictions()` or `spread_predictions()` to make the plot below. (Hint: only one works easily) 
-
-```{r}
 _____ %>% 
-  data_grid(______, .model = mod_ehs) %>% 
-  _______predictions(_______________) %>%
-  ____________________ + 
-    _______________________________________ +
-    _______________________________________ +
-    coord_trans(y = "exp")
+  _____________________ %>% 
+  filter(education >= 12) %>% 
+  ggplot(mapping = aes(x = height, y = _____, color = _____)) +
+    geom_line()
 ```
 
 ***
@@ -102,7 +98,7 @@ _____ %>%
 
 * Use `glance()`, `tidy()`, and `augment()` from the **broom** package to return model values in a data frame.
 
-* Use `data_grid()` and `add_predictions()` or `gather_predictions()` or `spread_predictions()` from the **modelr** package to visualize predictions.
+* Use `add_predictions()` or `gather_predictions()` or `spread_predictions()` from the **modelr** package to visualize predictions.
 
 * Use `add_residuals()` or `gather_residuals()` or `spread_residuals()` from the **modelr** package to visualize residuals.
 
