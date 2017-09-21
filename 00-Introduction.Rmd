@@ -9,28 +9,48 @@ This is an R Notebook. You can use it to take notes and run code. For example, y
 
 ```{r}
 # You can write code in chunks that look like this.
+# This chunk uses some code from base R to plot a data set.
 # To run the code click the Green play button to the right. Try it!
 plot(cars)
 ```
 
 Good job! The results of a code chunk will appear beneath the chunk. You can click the x above the results to make them go away, but let's not do that.
 
-To make a new chunk, press *Cmd+Option+I* (*Ctrl+Alt+I* on Windows), or click the *Insert* button at the top of this document, then select *R*. 
+You can open a new R Notebook by going to **File > New File > R Notebook**.
+
+# Adding chunks
+
+To add a new chunk, press *Cmd+Option+I* (*Ctrl+Alt+I* on Windows), or click the *Insert* button at the top of this document, then select *R*. 
 Try making a code chunk below:
 
 
 
-Good job! You should place all of your R code inside of code chunks.
+Good job! For now, you should place all of your R code inside of code chunks.
 
 ```{r}
 # You can click the downward facing arrow to the left of the play button to run
 # every chunk above the current code chunk. This is useful if the code in your
 # chunk depends on the code in previous chunks. For example, if you use an
-# object or dataset made in a previous chunk.
+# object or data set made in a previous chunk.
 ```
+
+# HTML version
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it. This makes a nice, polished report of your work to share.
 
 Click the *Preview* button at the top of this document or press *Cmd+Shift+K* (*Ctrl+Shift+K* on Windows) to preview the HTML file. Try clicking *Preview* now.
 
-You can open a new R Notebook by going to **File > New File > R Notebook**.
+# Packages
+
+You can immediately run any function from base R within a notebook, But if you'd like to run a function that comes in an R package, you will need to first load the package in the notebook.
+
+Do you remember how to run the core tidyverse packages? Load them in the chunk below:
+
+```{r}
+# I've already installed the tidyverse package(s) on this server
+# So all you need to do is load it
+
+```
+
+Good job! You'll need to reload your packages every time you begin a new notebook.
+
